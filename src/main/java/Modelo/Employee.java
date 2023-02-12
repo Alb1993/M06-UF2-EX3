@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -30,9 +31,9 @@ public class Employee implements Serializable {
     private Integer antiguitat;
 
     @Column(name = "naixement_empleat", nullable = false)
-    private Date dataNaixement;
+    private LocalDate dataNaixement;
     
-    public Employee(Integer id, String nom, Integer antiguitat, Date dataNaixement) {
+    public Employee(Integer id, String nom, Integer antiguitat, LocalDate dataNaixement) {
         this.id = id;
         this.nom = nom;
         this.antiguitat = antiguitat;
@@ -54,7 +55,7 @@ public class Employee implements Serializable {
         this.antiguitat = antiguitat;
     }
 
-    public void setDataNaixement(Date dataNaixement) {
+    public void setDataNaixement(LocalDate dataNaixement) {
         this.dataNaixement = dataNaixement;
     }
 
@@ -70,7 +71,7 @@ public class Employee implements Serializable {
         return antiguitat;
     }
 
-    public Date getDataNaixement() {
+    public LocalDate getDataNaixement() {
         return dataNaixement;
     }
 

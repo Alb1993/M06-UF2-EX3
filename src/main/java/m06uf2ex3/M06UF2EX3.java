@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
+import java.time.ZoneId;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,23 +41,27 @@ public class M06UF2EX3 {
         List<Employee> employees = new ArrayList<>();
 
         for (int i = 0; i < 1000; i++) { 
-            /**
-             * *
-             * Generamos un objeto Employee y creamos datos Fake para este.
-             */
-            Employee employee = new Employee();
-            employee.setId(Integer.valueOf(faker.idNumber().valid()));
-            employee.setNom(faker.name().name());
-            employee.setDataNaixement(faker.date().birthday());
-            employee.setAntiguitat(faker.number().numberBetween(1, 30));
-            /**
+            
+                        /**
              * *
              * Creamos dos objetos LocalDate, el DateNow y el birthDate, en
              * dateNow parseamos la fecha actual del sistema mientras que en
              * birthDate, parseamos la fecha generada por Java Faker.
              */
             LocalDate dateNow = LocalDate.now();
-            LocalDate birthDate = LocalDate.parse(employee.getDataNaixement()+"");
+            LocalDate birthDate = faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            
+            
+            /**
+             * *
+             * Generamos un objeto Employee y creamos datos Fake para este.
+             */
+            Employee employee = new Employee();
+            employee.setId((int)faker.number().randomNumber(8,true));
+            employee.setNom(faker.name().name());
+            
+            employee.setDataNaixement(birthDate);
+            employee.setAntiguitat(faker.number().numberBetween(1, 30));
 
             /**
              * *
